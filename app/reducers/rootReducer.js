@@ -13,7 +13,7 @@ const initialState = {
         isLoading: false
     },
     tabs: {
-        tabList: [],
+        tabList: ['your feed'],
         activeTab: null,
     },
     tags: {

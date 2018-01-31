@@ -5,7 +5,7 @@ import Header from './Header';
 import Footer from './Footer';
 
 // pages
-import Home         from './Home';
+import RealHome         from './RealHome';
 import Register     from './Register';
 import SignIn       from './SignIn';
 import Profile      from './Profile';
@@ -70,7 +70,7 @@ class RealworldApp extends Component {
                 <Header user={user} loading={loading}/>
                 <div className="content">
                     <Switch>
-                        <Route path="/" exact   component={Home} />
+                        <Route path="/" exact   component={RealHome} />
                         <Route path="/login" exact   component={withProps({setUser})(SignIn)} />
                         <Route path="/settings" exact component={withProps({user, removeUser})(Settings)} />
                         <Route path="/profile/:username" exact component={Profile} />
