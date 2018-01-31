@@ -3,21 +3,21 @@
  */
 
 import {
-    LOADING_ACTICLES, LOADING_TAGS, LOADING_ACTICLE, LOADING_COMMENTS, LOADING_USER, SET_TAGS, SET_TABS,
-    CHANGE_TAB, SET_ACTICLES, LIKE_A_ACTICLE, SET_SELECTED_ACTICLE, SET_COMMENTS, ADD_COMMENT,
-    DELETE_COMMENT, SET_SELECTED_USER
+    LOADING_ARTICLES, LOADING_TAGS, LOADING_ARTICLE, LOADING_COMMENTS, LOADING_USER, SET_TAGS, SET_TABS,
+    CHANGE_TAB, SET_ARTICLES, LIKE_A_ARTICLE, SET_SELECTED_ARTICLE, SET_COMMENTS, ADD_COMMENT,
+    DELETE_COMMENT, SET_SELECTED_USER, SELECT_TAG
 } from "./actionTypes"
 
-export function loadingActicles () {
-    return { type: LOADING_ACTICLES }
+export function loadingArticles () {
+    return { type: LOADING_ARTICLES }
 }
 
 export function loadingTags () {
     return { type: LOADING_TAGS }
 }
 
-export function loadingActicle () {
-    return { type: LOADING_ACTICLE }
+export function loadingArticle () {
+    return { type: LOADING_ARTICLE }
 }
 
 export function loadingComments () {
@@ -35,6 +35,13 @@ export function setTags (tags) {
     }
 }
 
+export function selectTag (tag) {
+    return {
+        type: SELECT_TAG,
+        tag: tag
+    }
+}
+
 export function setTabs (tabs) {
     return {
         type: SET_TABS,
@@ -49,28 +56,28 @@ export function changeTab (tab) {
     }
 }
 
-export function setActicles (jsonActicle) {
+export function setArticles (jsonArticle) {
     return {
-        type: SET_ACTICLES,
+        type: SET_ARTICLES,
         articles: {
-            acticleList: jsonActicle.articles,
-            acticleCount: jsonActicle.articlesCount,
+            articleList: jsonArticle.articles,
+            articleCount: jsonArticle.articlesCount,
             isLoading: false
         }
     }
 }
 
-export function likeAActicle (acticle) {
+export function likeAArticle (article) {
     return {
-        type: LIKE_A_ACTICLE,
-        acticle: acticle
+        type: LIKE_A_ARTICLE,
+        article: article
     }
 }
 
-export function setSelectedActicle (acticle, isNew) {
+export function setSelectedArticle (article, isNew) {
     return {
-        type: SET_SELECTED_ACTICLE,
-        acticle: acticle,
+        type: SET_SELECTED_ARTICLE,
+        article: article,
         isNew: isNew
     }
 }

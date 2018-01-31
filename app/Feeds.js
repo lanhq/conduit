@@ -14,67 +14,51 @@ class Feeds extends Component {
 
     constructor (props) {
         super(props);
-        this.state = {
-            articles: [],
-            loading: true
-        }
         this.handleFavorite = this.handleFavorite.bind(this);
     }
 
     componentDidMount () {
-        this._getFeeds(this.props);
+        this._getArticles(this.props);
     }
 
-    componentWillReceiveProps ({activeFeed}) {
-        if (this.props.activeFeed === activeFeed) return;
+    componentWillReceiveProps ({activeTab}) {
+        if (this.props.activeTab === activeTab) return;
 
-        this.setState({
-            articles: [],
-            loading: true
-        });
-        this._getFeeds({activeFeed});
+        this._getArticles({ activeTab });
     }
 
-    _getFeeds ({activeFeed}) {
-        if (!activeFeed) return;
+    _getArticles ({ activeTab }) {
+        if (!activeTab) return;
 
-        let getFeeds;
+        let getArticles;
+        this.props.loadingArticles()
 
-        if (activeFeed === YOUR_FEED_UNI_ID) {
-            getFeeds = Api.articlesFeed(LIMIT);
-        } else if (activeFeed === GLOBAL_FEED_UNI_ID) {
-            getFeeds = Api.articlesList(LIMIT)
+        if (activeTab === this.props.tabs[0]) {
+            getArticles = Api.articlesFeed(LIMIT);
+        } else if (activeTab === this.props.tabs[1]) {
+            getArticles = Api.articlesList(LIMIT)
         } else {
-            getFeeds = Api.articlesList({
+            getArticles = Api.articlesList({
                 ...LIMIT,
-                tag: activeFeed
+                tag: activeTab.substring(1,activeTab.length)
             });
         }
 
-        getFeeds.then(response => {
-            this.setState({
-                articles: response.articles,
-                loading: false
-            })
+        getArticles.then(response => {
+            this.props.setArticles(response)
         })
     }
 
     handleFavorite (e, a) {
+        let likeAArticle = this.props.likeAArticle
         Handle.favorite(e, this.props.history.push, a, article => {
-            this.setState({
-                articles: this.state.articles.map(_article => {
-                    if (_article.slug === article.slug) {
-                        _article.favoritesCount = article.favoritesCount;
-                        _article.favorited = article.favorited;
-                    }
-                    return _article;
-                })
-            });
+            likeAArticle(article)
         });
     }
 
     render () {
-        if (this.state.loading) {
+        let { isLoading, articleList } = this.props
+        if (isLoading) {
             return (
                 <div className="article-preview">
                     Loading articles...
@@ -82,7 +66,7 @@ class Feeds extends Component {
             );
         }
 
-        if (!this.state.articles.length) {
+        if (!articleList.length) {
             return (
                 <div className="article-preview">
                     No articles are here... yet.
@@ -93,7 +77,7 @@ class Feeds extends Component {
         return (
             <div>
                 {
-                    this.state.articles.map(article => (
+                    articleList.map(article => (
                         <div className="article-preview" key={article.slug}>
                             <div className="article-meta">
                                 <Link to={`/profile/${article.author.username}`} className="author">

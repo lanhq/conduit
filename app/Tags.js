@@ -5,36 +5,47 @@ class Tags extends PureComponent {
 
     constructor(props) {
         super(props);
-        this.state = {
-            tags: []
-        };
 
-        this.handleOnClick = this.handleOnClick.bind(this);
+        // this._selectTag = this._selectTag.bind(this);
     }
 
-    handleOnClick (e) {
-        e.preventDefault();
-        this.props.handleTagClick(e.target.id);
-    }
+    // _selectTag (tag) {
+    //     this.props.selectTag(tag)
+    // }
 
-    componentDidMount() {
+    componentWillMount() {
+        this.props.loadingTags()
         Api
             .getTags()
             .then(tags => {
-                this.setState({tags});
+                this.props.setTags(tags)
             });
     }
 
     render () {
+        var tags = this.props.tags,
+            isLoading = this.props.isLoading;
+        if (isLoading) {
+            return (
+                <div className="col-md-3">
+                    <div className="sidebar">
+                        <p>Popular Tags</p>
+                        <div className="tag-list">
+                            Loading articles...
+                        </div>
+                    </div>
+                </div>
+            );
+        }
         return (
             <div className="col-md-3">
                 <div className="sidebar">
                     <p>Popular Tags</p>
                     <div className="tag-list">
                         {
-                            this.state.tags.map(
+                            tags.map(
                                 (tag, index) => (
-                                    <a id={tag} key={index} href="#" className="tag-pill tag-default" onClick={this.handleOnClick}>{tag}</a>
+                                    <a id={tag} key={index} href="#" className="tag-pill tag-default" onClick={() => { this.props.selectTag(tag)}}>{tag}</a>
                                 )
                             )
                         }

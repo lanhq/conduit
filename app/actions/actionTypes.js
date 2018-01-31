@@ -3,20 +3,21 @@
  */
 
 // LOADING ACTIONS
-export const LOADING_ACTICLES = 'LOADING_ACTICLES'
+export const LOADING_ARTICLES = 'LOADING_ARTICLES'
 export const LOADING_TAGS = 'LOADING_TAGS'
-export const LOADING_ACTICLE = 'LOADING_ACTICLE'
+export const LOADING_ARTICLE = 'LOADING_ARTICLE'
 export const LOADING_COMMENTS = 'LOADING_COMMENTS'
 export const LOADING_USER = 'LOADING_USER'
 
 export const SET_TAGS = 'SET_TAGS'
+export const SELECT_TAG = 'SELECT_TAG'
 
 export const SET_TABS = 'SET_TABS'
 export const CHANGE_TAB = 'CHANGE_TAB'
-export const SET_ACTICLES = 'SET_ACTICLES'
-export const LIKE_A_ACTICLE = 'LIKE_A_ACTICLE'
+export const SET_ARTICLES = 'SET_ARTICLES'
+export const LIKE_A_ARTICLE = 'LIKE_A_ARTICLE'
 
-export const SET_SELECTED_ACTICLE = 'SET_SELECTED_ACTICLE'
+export const SET_SELECTED_ARTICLE = 'SET_SELECTED_ARTICLE'
 export const SET_COMMENTS = 'SET_COMMENTS'
 export const ADD_COMMENT = 'ADD_COMMENT'
 export const DELETE_COMMENT = 'DELETE_COMMENT'
@@ -27,13 +28,13 @@ export const SET_SELECTED_USER = 'SET_SELECTED_USER'
  * Some end user actions
  * go to home page
  *  - LOADING_TAGS -> SET_TAGS
- *  - SET_TABS -> CHANGE_TAB -> LOADING_ACTICLES -> SET_ACTICLES
+ *  - SET_TABS -> CHANGE_TAB -> LOADING_ARTICLES -> SET_ARTICLES
  * 
- * like/unlike a acticle
- *  - LIKE_A_ACTICLE
+ * like/unlike a article
+ *  - LIKE_A_ARTICLE
  * 
- * view a acticle
- *  - LOADING_ACTICLE -> SET_SELECTED_ACTICLE
+ * view a article
+ *  - LOADING_ARTICLE -> SET_SELECTED_ARTICLE
  *  - LOADING_COMMENTS -> SET_COMMENTS
  * 
  * POST A COMMENT
@@ -42,23 +43,23 @@ export const SET_SELECTED_USER = 'SET_SELECTED_USER'
  * DELETE A COMMENT
  *  - DELETE_COMMENT
  * 
- * like/unlike selected acticle
- *  - SET_SELECTED_ACTICLE
+ * like/unlike selected article
+ *  - SET_SELECTED_ARTICLE
  * 
- * FOLOW USER IN SELECTED ACTICLE
- *  - SET_SELECTED_ACTICLE
+ * FOLOW USER IN SELECTED ARTICLE
+ *  - SET_SELECTED_ARTICLE
  * 
- * delete acticle -> go to hom page
+ * delete article -> go to hom page
  * 
- * edit owned acticle
- *  - LOADING_ACTICLE -> SET_SELECTED_ACTICLE
+ * edit owned article
+ *  - LOADING_ARTICLE -> SET_SELECTED_ARTICLE
  * 
- * add new acticle
- *  - SET_SELECTED_ACTICLE
+ * add new article
+ *  - SET_SELECTED_ARTICLE
  * 
  * VIEW USER PROFILE
  *  - LOADING_USER -> SET_SELECTED_USER
- *  - SET_TABS -> CHANGE_TAB -> LOADING_ACTICLES -> SET_ACTICLES
+ *  - SET_TABS -> CHANGE_TAB -> LOADING_ARTICLES -> SET_ARTICLES
  * 
  * edit profile
  *  - state didn't change
@@ -67,7 +68,7 @@ export const SET_SELECTED_USER = 'SET_SELECTED_USER'
  *  - SET_SELECTED_USER
  * 
  * select a tag
- *  - SET_TABS -> CHANGE_TAB -> LOADING_ACTICLES -> SET_ACTICLES
+ *  - SET_TABS -> CHANGE_TAB -> LOADING_ARTICLES -> SET_ARTICLES
  * 
  */
 
@@ -77,7 +78,7 @@ export const SET_SELECTED_USER = 'SET_SELECTED_USER'
 /**
 {
     articles: {
-        acticleList: [{
+        articleList: [{
             title: "Test",
             slug: "test-pv547p",
             body: "This is only test!",
@@ -94,7 +95,7 @@ export const SET_SELECTED_USER = 'SET_SELECTED_USER'
             favorited: false,
             favoritesCount: 0
         }],
-        acticleCount: 1,
+        articleCount: 1,
         isLoading: false
     },
     tabs: {
@@ -105,8 +106,8 @@ export const SET_SELECTED_USER = 'SET_SELECTED_USER'
         tagList: ['dragons', 'test'],
         isLoading: false
     },
-    selectedActicle: {
-        acticle: {
+    selectedArticle: {
+        article: {
             title: "Test",
             slug: "test-pv547p",
             body: "This is only test!",

@@ -13,10 +13,6 @@ const Tabs = (props) => {
         tabs = props.tabs;
     let changeTab = props.changeTab;
 
-    if (!activeTab) {
-        changeTab(tabs[0])
-    }
-
     return (
         <div className="feed-toggle">
             <ul className="nav nav-pills outline-active">

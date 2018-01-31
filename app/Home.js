@@ -1,22 +1,13 @@
 import React, { Component, PureComponent } from 'react';
 import Token from './services/token';
-import Feeds from './Feeds';
-import Tags from './Tags';
-import {YOUR_FEED_UNI_ID, GLOBAL_FEED_UNI_ID}  from './Tabs';
+import VisibleArticles from './VisibleArticles';
+import VisibleTags from './VisibleTags';
 import VisibleTabs from './VisibleTabs'
 
 class Home extends Component {
     constructor(props) {
         super(props);
     }
-    //     this.handleTagClick = this.handleTagClick.bind(this);
-    // }
-
-    // handleTagClick (activeFeed) {
-    //     this.setState({
-    //         activeFeed
-    //     });
-    // }
 
     componentDidMount () {
         var setTabs = this.props.setTabs,
@@ -26,7 +17,7 @@ class Home extends Component {
     }
 
     render() {
-        let activeFeed = 'Your Feed',
+        let activeTab = this.props.activeTab,
             token = Token.get();
         return (
             <div className="home-page">
@@ -45,10 +36,10 @@ class Home extends Component {
 
                         <div className="col-md-9">
                             <VisibleTabs/>
-                            <Feeds activeFeed={activeFeed}/>
+                            <VisibleArticles/>
                         </div>
 
-                        <Tags/>
+                        <VisibleTags/>
                     </div>
                 </div>
             </div>

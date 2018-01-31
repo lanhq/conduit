@@ -2,6 +2,11 @@ import { connect } from 'react-redux'
 import { changeTab, setTabs } from './actions/actionCreator'
 import Home from './Home'
 
+const mapStateToProps = state => {
+    return {
+        activeTab: state.tabs.activeTab
+    }
+}
 
 const mapDispatchToProps = dispatch => {
     return {
