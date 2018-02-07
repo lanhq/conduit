@@ -4,9 +4,9 @@ import moment from 'moment';
 import Api from '../../services/api';
 import Handle from '../../services/handle';
 
-/* const LIMIT = {
+const LIMIT = {
     limit: 10
-}; */
+};
 
 class Feeds extends Component {
 
@@ -16,23 +16,17 @@ class Feeds extends Component {
 
     componentDidMount () {
         // redux only
-        // this._getArticles(this.props);
-
-        // redux thunk
-        this.props.fetchArticles()
+        this._getArticles(this.props);
     }
 
     componentWillReceiveProps ({activeTab}) {
         if (this.props.activeTab === activeTab) return;
 
         // redux only
-        // this._getArticles({ activeTab });
-
-        // redux thunk
-        this.props.fetchArticles()
+        this._getArticles({ activeTab });
     }
 
-    /* _getArticles ({ activeTab }) {
+    _getArticles ({ activeTab }) {
         let getArticles;
         this.props.loadingArticles()
 
@@ -50,7 +44,7 @@ class Feeds extends Component {
         getArticles.then(response => {
             this.props.setArticles(response)
         })
-    } */
+    }
 
     handleFavorite (e, a) {
         let likeAArticle = this.props.likeAArticle

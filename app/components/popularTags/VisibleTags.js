@@ -1,6 +1,5 @@
 import { connect } from 'react-redux'
 import { selectTag, setTags, loadingTags } from '../../actions/actionCreator'
-import { fetchTags } from '../../actions/thunkActionCreator'
 import Tags from './Tags'
 
 const mapStateToProps = state => {
@@ -20,9 +19,6 @@ const mapDispatchToProps = dispatch => {
         },
         loadingTags: () => {
             dispatch(loadingTags())
-        },
-        fetchTags: () => {
-            dispatch(fetchTags())
         }
     }
 }

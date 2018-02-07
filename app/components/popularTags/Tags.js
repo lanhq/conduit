@@ -6,24 +6,16 @@ class Tags extends PureComponent {
     constructor(props) {
         super(props);
 
-        // this._selectTag = this._selectTag.bind(this);
     }
-
-    // _selectTag (tag) {
-    //     this.props.selectTag(tag)
-    // }
 
     componentWillMount() {
         // redux only
-        // this.props.loadingTags()
-        // Api
-        //     .getTags()
-        //     .then(tags => {
-        //         this.props.setTags(tags)
-        //     });
-
-        // redux thunk
-        this.props.fetchTags()
+        this.props.loadingTags()
+        Api
+            .getTags()
+            .then(tags => {
+                this.props.setTags(tags)
+            });
     }
 
     render () {

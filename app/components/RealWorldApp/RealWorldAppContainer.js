@@ -22,9 +22,9 @@ const mapDispatchToProps = dispatch => {
     }
 }
 
-const RealWorldAppContainer = withRouter(connect(
+const RealWorldAppContainer = connect(
     mapStateToProps,
     mapDispatchToProps
-)(RealworldApp))
+)(RealworldApp)
   
 export default RealWorldAppContainer
