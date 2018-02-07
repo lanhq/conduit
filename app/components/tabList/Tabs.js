@@ -1,12 +1,9 @@
 import React, {PureComponent} from "react";
-import Token from "./services/token";
+import Token from "../../services/token";
 
 const HIDDEN = {
     display: 'none'
 };
-
-export const YOUR_FEED_UNI_ID = 'yourFeedUniId';
-export const GLOBAL_FEED_UNI_ID = 'globalFeedUniId';
 
 const Tabs = (props) => {
     let activeTab = props.activeTab,

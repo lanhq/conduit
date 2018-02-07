@@ -1,7 +1,7 @@
 import {
     LOADING_ARTICLES, LOADING_TAGS, LOADING_ARTICLE, LOADING_COMMENTS, LOADING_USER, SET_TAGS,
     SET_TABS, CHANGE_TAB, SET_ARTICLES, LIKE_A_ARTICLE, SET_SELECTED_ARTICLE, SET_COMMENTS, ADD_COMMENT,
-    DELETE_COMMENT, SET_SELECTED_USER, SELECT_TAG
+    DELETE_COMMENT, SET_SELECTED_USER, SELECT_TAG, LOADING_LOGGED_USER, SET_LOGGED_USER
 } from "../actions/actionTypes"
 import * as actionCreators from "../actions/actionCreator"
 import { combineReducers } from 'redux'
@@ -31,7 +31,11 @@ const initialState = {
         isLoading: false
     },
     selectedUser: {
-        user: {},
+        user: null,
+        isLoading: false
+    },
+    loggedUser: {
+        user: null,
         isLoading: false
     }
 }
@@ -169,6 +173,22 @@ function selectedUser (state = initialState.selectedUser, action) {
     }
 }
 
+function loggedUser (state = initialState.loggedUser, action) {
+    switch (action.type) {
+        case LOADING_LOGGED_USER:
+            return Object.assign({}, state, {
+                isLoading: true
+            })
+        case SET_LOGGED_USER:
+            return {
+                user: action.user,
+                isLoading: false
+            }
+        default:
+            return state
+    }
+}
+
 
 var rootReducer = combineReducers({
     articles,
@@ -176,7 +196,8 @@ var rootReducer = combineReducers({
     tags,
     selectedArticle,
     comments,
-    selectedUser
+    selectedUser,
+    loggedUser
 });
 
 export default rootReducer

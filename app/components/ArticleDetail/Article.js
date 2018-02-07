@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
-import Api from './services/api';
-import ArticleMeta from './ArticleMeta';
+import Api from '../../services/api';
+import ArticleMeta from './ArticleMeta'
 
 const ArticleContent = ({body}) => (
     <div className="row article-content">
@@ -14,33 +14,26 @@ class Article extends PureComponent {
 
     constructor (props) {
         super(props);
-        this.state = {
-            article: {}
-        };
         this.handleChangeArticle = this.handleChangeArticle.bind(this);
     }
 
     componentDidMount () {
         let id = this.props.match.params.id;
-        Api
-            .getArticle(id)
-            .then(article => {
-                this.setState({article});
-            });
+        this.props.fectchArticle(id)
     }
 
     handleChangeArticle (article) {
-        this.setState({article});
+        this.props.setSelectedArticle(article)
     }
 
     render () {
-        let {title, body} = this.state.article;
+        let {title, body} = this.props.article;
         return (
             <div className="article-page">
                 <div className="banner">
                     <div className="container">
                         <h1>{title}</h1>
-                        <ArticleMeta article={this.state.article} currentUser={this.props.user} onChange={this.handleChangeArticle}/>
+                        <ArticleMeta article={this.props.article} currentUser={this.props.user} onChange={this.handleChangeArticle}/>
                     </div>
                 </div>
 
@@ -48,7 +41,7 @@ class Article extends PureComponent {
                     <ArticleContent body={body}/>
                     <hr />
                     <div className="article-actions">
-                        <ArticleMeta article={this.state.article} currentUser={this.props.user} onChange={this.handleChangeArticle}/>
+                        <ArticleMeta article={this.props.article} currentUser={this.props.user} onChange={this.handleChangeArticle}/>
                     </div>
 
                     {/*<CommentSection/>*/}

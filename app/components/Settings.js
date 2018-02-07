@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import Token from './services/token';
-import Storage from './services/storage';
-import {redirectIfNotAuthenticated} from './services/auth';
+import Token from '../services/token';
+import Storage from '../services/storage';
+import {redirectIfNotAuthenticated} from '../services/auth';
 
 class Settings extends Component {
 

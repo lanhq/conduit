@@ -1,8 +1,8 @@
 import React, { Component, PureComponent } from 'react';
-import Token from './services/token';
-import VisibleArticles from './VisibleArticles';
-import VisibleTags from './VisibleTags';
-import VisibleTabs from './VisibleTabs'
+import Token from '../../services/token';
+import VisibleArticles from '../articleList/VisibleArticles';
+import VisibleTags from '../popularTags/VisibleTags';
+import VisibleTabs from '../tabList/VisibleTabs'
 
 class Home extends Component {
     constructor(props) {

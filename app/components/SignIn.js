@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
-import Token from  './services/token';
-import Storage from  './services/storage';
-import Api from  './services/api';
+import Token from  '../services/token';
+import Storage from  '../services/storage';
+import Api from  '../services/api';
 
 class SignIn extends Component {
 

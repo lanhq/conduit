@@ -5,7 +5,7 @@
 import {
     LOADING_ARTICLES, LOADING_TAGS, LOADING_ARTICLE, LOADING_COMMENTS, LOADING_USER, SET_TAGS, SET_TABS,
     CHANGE_TAB, SET_ARTICLES, LIKE_A_ARTICLE, SET_SELECTED_ARTICLE, SET_COMMENTS, ADD_COMMENT,
-    DELETE_COMMENT, SET_SELECTED_USER, SELECT_TAG
+    DELETE_COMMENT, SET_SELECTED_USER, SELECT_TAG, LOADING_LOGGED_USER, SET_LOGGED_USER
 } from "./actionTypes"
 
 export function loadingArticles () {
@@ -110,6 +110,19 @@ export function deleteComment (commentId) {
 export function setSelectedUser (user) {
     return {
         type: SET_SELECTED_USER,
+        user: user
+    }
+}
+
+export function loadingLoggedUser () {
+    return {
+        type: LOADING_LOGGED_USER
+    }
+}
+
+export function setLoggedUser (user) {
+    return {
+        type: SET_LOGGED_USER,
         user: user
     }
 }

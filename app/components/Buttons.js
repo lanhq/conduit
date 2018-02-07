@@ -1,6 +1,6 @@
 import React, {PureComponent, Fragment} from "react";
-import Handle from "./services/handle";
-import Api from "./services/api";
+import Handle from "../services/handle";
+import Api from "../services/api";
 import {Link, withRouter} from "react-router-dom";
 
 

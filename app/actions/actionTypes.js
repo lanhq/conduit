@@ -8,6 +8,7 @@ export const LOADING_TAGS = 'LOADING_TAGS'
 export const LOADING_ARTICLE = 'LOADING_ARTICLE'
 export const LOADING_COMMENTS = 'LOADING_COMMENTS'
 export const LOADING_USER = 'LOADING_USER'
+export const LOADING_LOGGED_USER = 'LOADING_LOGGED_USER'
 
 export const SET_TAGS = 'SET_TAGS'
 export const SELECT_TAG = 'SELECT_TAG'
@@ -23,6 +24,11 @@ export const ADD_COMMENT = 'ADD_COMMENT'
 export const DELETE_COMMENT = 'DELETE_COMMENT'
 
 export const SET_SELECTED_USER = 'SET_SELECTED_USER'
+
+export const SET_LOGGED_USER = 'SET_LOGGED_USER'
+
+// Thunk action type
+export const FETCH_ARTICLES = 'FETCH_ARTICLES'
 
 /**
  * Some end user actions
@@ -132,6 +138,15 @@ export const SET_SELECTED_USER = 'SET_SELECTED_USER'
         isLoading: false
     },
     selectedUser: {
+        user: {
+            bio: null,
+            following: true,
+            image: "https://static.productionready.io/images/smiley-cyrus.jpg",
+            username: "MarcisTest"
+        },
+        isLoading: false
+    },
+    loggedUser: {
         user: {
             bio: null,
             following: true,

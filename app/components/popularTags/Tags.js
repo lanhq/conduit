@@ -1,5 +1,5 @@
 import React, {Component, PureComponent} from 'react';
-import Api from './services/api';
+import Api from '../../services/api';
 
 class Tags extends PureComponent {
 
@@ -14,12 +14,16 @@ class Tags extends PureComponent {
     // }
 
     componentWillMount() {
-        this.props.loadingTags()
-        Api
-            .getTags()
-            .then(tags => {
-                this.props.setTags(tags)
-            });
+        // redux only
+        // this.props.loadingTags()
+        // Api
+        //     .getTags()
+        //     .then(tags => {
+        //         this.props.setTags(tags)
+        //     });
+
+        // redux thunk
+        this.props.fetchTags()
     }
 
     render () {

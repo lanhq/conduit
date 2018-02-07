@@ -1,41 +1,34 @@
 import React, {PureComponent, Fragment} from "react";
 import {Link} from "react-router-dom";
 import moment from "moment";
-import Storage from  './services/storage';
-import {FavoriteButtonWithRouter, FollowButtonWithRouter, RemoveButtonWithRouter, EditButton} from './Buttons'
+import Storage from  '../../services/storage';
+import {FavoriteButtonWithRouter, FollowButtonWithRouter, RemoveButtonWithRouter, EditButton} from '../Buttons'
 
 class ArticleMeta extends PureComponent {
 
     constructor (props) {
         super(props);
-        this.state = {
-            article: this.props.article
-        };
-    }
-
-    componentWillReceiveProps ({article}) {
-        this.setState({article});
     }
 
     render () {
-        let {createdAt, author = {}} = this.state.article,
+        let {createdAt, author = {}} = this.props.article,
             {image = '', username = ''} = author,
             groupButtonEle;
 
         if (Storage.get('currentUsername') === username) {
             groupButtonEle = (
                 <Fragment>
-                    <EditButton article={this.state.article}/>
+                    <EditButton article={this.props.article}/>
                     &nbsp;&nbsp;
-                    <RemoveButtonWithRouter article={this.state.article}/>
+                    <RemoveButtonWithRouter article={this.props.article}/>
                 </Fragment>
             );
         } else if (username !== '') {
             groupButtonEle = (
                 <Fragment>
-                    <FollowButtonWithRouter article={this.state.article} onClick={this.props.onChange}/>
+                    <FollowButtonWithRouter article={this.props.article} onClick={this.props.onChange}/>
                     &nbsp;&nbsp;
-                    <FavoriteButtonWithRouter article={this.state.article} onClick={this.props.onChange}/>
+                    <FavoriteButtonWithRouter article={this.props.article} onClick={this.props.onChange}/>
                 </Fragment>
             );
         }
@@ -47,7 +40,7 @@ class ArticleMeta extends PureComponent {
                     <Link to={`/profile/${username}`} className="author">{username}</Link>
                     <span className="date">{moment(createdAt).format('MMMM DD, YYYY')}</span>
                 </div>
-                {this.state.article && groupButtonEle}
+                {this.props.article && groupButtonEle}
             </div>
         );
     }

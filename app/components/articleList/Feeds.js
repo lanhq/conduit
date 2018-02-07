@@ -1,39 +1,42 @@
 import React, {PureComponent, Component} from 'react';
 import {Link, withRouter} from 'react-router-dom';
 import moment from 'moment';
-import Api from './services/api';
-import Handle from './services/handle';
+import Api from '../../services/api';
+import Handle from '../../services/handle';
 
-import {YOUR_FEED_UNI_ID, GLOBAL_FEED_UNI_ID} from './Tabs';
-
-const LIMIT = {
+/* const LIMIT = {
     limit: 10
-};
+}; */
 
 class Feeds extends Component {
 
     constructor (props) {
         super(props);
-        this.handleFavorite = this.handleFavorite.bind(this);
     }
 
     componentDidMount () {
-        this._getArticles(this.props);
+        // redux only
+        // this._getArticles(this.props);
+
+        // redux thunk
+        this.props.fetchArticles()
     }
 
     componentWillReceiveProps ({activeTab}) {
         if (this.props.activeTab === activeTab) return;
 
-        this._getArticles({ activeTab });
+        // redux only
+        // this._getArticles({ activeTab });
+
+        // redux thunk
+        this.props.fetchArticles()
     }
 
-    _getArticles ({ activeTab }) {
-        if (!activeTab) return;
-
+    /* _getArticles ({ activeTab }) {
         let getArticles;
         this.props.loadingArticles()
 
-        if (activeTab === this.props.tabs[0]) {
+        if (activeTab === this.props.tabs[0] || !activeTab) {
             getArticles = Api.articlesFeed(LIMIT);
         } else if (activeTab === this.props.tabs[1]) {
             getArticles = Api.articlesList(LIMIT)
@@ -47,7 +50,7 @@ class Feeds extends Component {
         getArticles.then(response => {
             this.props.setArticles(response)
         })
-    }
+    } */
 
     handleFavorite (e, a) {
         let likeAArticle = this.props.likeAArticle

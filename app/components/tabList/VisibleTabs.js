@@ -1,9 +1,10 @@
 import { connect } from 'react-redux'
-import { changeTab, setTabs } from './actions/actionCreator'
-import Home from './Home'
+import { changeTab } from '../../actions/actionCreator'
+import Tabs from './Tabs'
 
 const mapStateToProps = state => {
     return {
+        tabs: state.tabs.tabList,
         activeTab: state.tabs.activeTab
     }
 }
@@ -12,18 +13,13 @@ const mapDispatchToProps = dispatch => {
     return {
         changeTab: tab => {
             dispatch(changeTab(tab))
-        },
-        setTabs: tabs => {
-            dispatch(setTabs(tabs))
         }
     }
 }
 
-const RealHome = connect(
-    () => {
-        return {}
-    },
+const VisibleTabs = connect(
+    mapStateToProps,
     mapDispatchToProps
-)(Home)
+)(Tabs)
   
-export default RealHome
+export default VisibleTabs

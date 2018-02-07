@@ -1,5 +1,6 @@
 import { connect } from 'react-redux'
-import { setArticles, likeAArticle, loadingArticles } from './actions/actionCreator'
+import { setArticles, likeAArticle, loadingArticles } from '../../actions/actionCreator'
+import { fetchArticles } from '../../actions/thunkActionCreator'
 import Feeds from './Feeds'
 
 const mapStateToProps = state => {
@@ -22,6 +23,9 @@ const mapDispatchToProps = dispatch => {
         },
         loadingArticles: () => {
             dispatch(loadingArticles())
+        },
+        fetchArticles: () => {
+            dispatch(fetchArticles())
         }
     }
 }

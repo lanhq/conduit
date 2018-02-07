@@ -1,13 +1,10 @@
 import React, { PureComponent } from 'react';
 import {withRouter} from 'react-router-dom';
-import Api from './services/api';
+import Api from '../../services/api';
 
 class EditArticle extends PureComponent {
     constructor (props) {
         super(props);
-        this.state = {
-            article: {}
-        }
         this.isNew = props.location.pathname.indexOf('article/new') > -1;
 
         this.handleOnChange = this.handleOnChange.bind(this);
@@ -17,16 +14,12 @@ class EditArticle extends PureComponent {
     componentDidMount () {
         if (!this.isNew) {
             let id = this.props.match.params.id;
-            Api
-                .getArticle(id)
-                .then(article => {
-                    this.setState({article});
-                })
+            this.props.fectchArticle(id);
         }
     }
 
     handlePublishArticle () {
-        let {slug, title, description, body, tagList} = this.state.article,
+        let {slug, title, description, body, tagList} = this.inputs,
             exec;
 
         if (this.isNew) {
@@ -58,16 +51,21 @@ class EditArticle extends PureComponent {
 
     handleOnChange (e) {
         let {id, value} = e.target;
-        this.setState({
-            article: {
-                ...this.state.article,
+        if (!this.inputs) {
+            this.inputs = {
+                ...this.props.article,
                 [id] : value
-            }
-        });
+            };
+        } else { 
+            this.inputs = {
+                ...this.inputs,
+                [id] : value
+            };
+        }
     }
 
     render () {
-        let {title, description, body, tagList} = this.state.article;
+        let {title, description, body, tagList} = this.props.article;
         return (
             <div className="editor-page">
                 <div className="container page">
